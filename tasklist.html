@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css" type="text/css">
+    <!-- <script src="tasklist.js"></script> -->
+
+    <style>
+        .delete-item{
+            margin-left: 300px;
+            position: relative;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="row mt-5">
+        <div class="col"></div>
+        <div class="col">
+            <div class="card px-4 py-4">
+                <div class="card-title px-5">
+                    <h2>My tasks</h2>
+                </div>
+                <form class="card-form" id="task-form" >
+                    <div class="input-field">
+                        <input type="text" name="task" id="task" placeholder="New Task" style="border: none; width: 100%;">
+                        <hr class= "my-0">
+                    </div>
+                    <button id="task-btn" type="submit" value="Add Task" class="btn btn-primary px-3 mt-3" style="">add task</button>
+                    <!-- <input type="button"  placeholder="Add Task" class="btn btn-primary px-3 my-3">  -->
+                </form>
+
+                <div class="card-action mt-3">
+                    <h5 id="task-title">Tasks</h5>
+                    <div class="input-field">
+                        <input type="text" name="filter" id="filter" placeholder="Filter Tasks" style="border: none; width: 100%;">
+                        <hr class="my-0">
+                    </div>
+                    
+                    <div class="d-flex">
+                        <ul class="nav-items"></ul>
+                        
+                    </div>
+                    
+                    
+                    
+                    <a href="#" class="clear-task btn btn-secondary px-3">Clear tasks</a>
+                </div>
+            </div>
+            <img src="" width="" alt="">
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <script>
+        
+
+        const form = document.querySelector('#task-form');
+        const taskBtn = document.querySelector('#task-btn');
+        const taskList = document.querySelector('.nav-items');
+        const taskX = document.querySelector('.a-items');
+        const clearBtn = document.querySelector('.clear-task');
+        var taskInput = document.querySelector('#task');
+        const filter = document.querySelector('#filter');
+
+        // taskInput.style.background = "red";
+        loadEventListeners();
+
+        function loadEventListeners(){
+            
+            form.addEventListener("submit", addTask);
+        }
+
+        function addTask(e){
+            if(taskInput.value === ''){
+                alert("Add a Task");
+            }
+
+            else{
+                 const li = document.createElement('li');
+
+                li.className = 'nav-links pt-2 text-danger';
+
+                li.appendChild(document.createTextNode(taskInput.value));
+
+                const link = document.createElement('a');
+
+                 link.className = 'delete-item';
+
+                 link.innerHTML = '<img src="x.jpg" height = "10px" width = "10px" alt="">';
+
+                taskList.appendChild(li);
+                li.appendChild(link); 
+
+                console.log(li);
+
+                link.className = 'delete-item';
+
+                taskInput.value = '';
+            }
+
+
+                
+            e.preventDefault();
+            
+        }
+
+    </script>
+    
+</body>
+</html>
